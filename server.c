@@ -6,16 +6,15 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 22:35:55 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/15 00:00:12 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/15 01:12:43 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
 
+//		Collect bit by bit, until there is 8bit=1B
 void	ft_sig_handler(int signal)
 {
 	static int	i;
@@ -36,6 +35,7 @@ void	ft_sig_handler(int signal)
 	}
 }
 
+//	the usage of SA_RESTART is if there is interupt
 int	main(int argc, char *argv[])
 {
 	struct sigaction	sigac;
@@ -44,11 +44,10 @@ int	main(int argc, char *argv[])
 	sigac.sa_flags = SA_RESTART;
 	sigaction(SIGUSR1, &sigac, 0);
 	sigaction(SIGUSR2, &sigac, 0);
-	printf("Receiver PID: %d\n", getpid());
+	ft_printf("Receiver PID: %d\n", getpid());
 	while (1)
 	{
 		usleep(100);
 	}
-
 	return (0);
 }

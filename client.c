@@ -6,31 +6,30 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 22:35:51 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/15 00:52:15 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/07/15 01:09:43 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf/ft_printf.h"
-#include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
 
 //		print int in binary
-void	print_bin(long n)
-{
-	long	i;
-	for (i = 1 << 8; i > 0; i = i / 2) {
-		if ((n & i) != 0)
-		{
-			ft_printf("1");
-		}
-		else
-		{
-			ft_printf("0");
-		}
-	}
-	ft_printf("\n");
-}
+// void	print_bin(long n)
+// {
+// 	long	i;
+// 	for (i = 1 << 8; i > 0; i = i / 2) {
+// 		if ((n & i) != 0)
+// 		{
+// 			ft_printf("1");
+// 		}
+// 		else
+// 		{
+// 			ft_printf("0");
+// 		}
+// 	}
+// 	ft_printf("\n");
+// }
 
 //		send bit by bit
 void	ft_send_bin(int i, int pid, int bin[8])
@@ -55,7 +54,6 @@ void	ft_send_signal(int pid, int n)
 	i = 7;
 	while (i >= 0)
 	{
-		// print_bin(n);
 		if (n == 0 || (n & 1) == 0)
 			bin[i] = 0;
 		else if ((n & 1) == 1)
@@ -64,7 +62,6 @@ void	ft_send_signal(int pid, int n)
 			n = n >> 1;
 		i--;
 	}
-	// write(1, "\n", 1);
 	i = 0;
 	ft_send_bin(i, pid, bin);
 }
