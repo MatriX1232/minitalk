@@ -1,5 +1,9 @@
 # MINITALK
 
+<div align="center">
+  <img src="MINITALK_LOGO.png">
+</div>
+
 ## Info
 This project is a simple demonstration of data transmission using UNIX signals. It consists of a server and a client program.
 The server waits for signals from the client and the client sends signals to the server. 
